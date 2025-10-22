@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 
-export const runtime = 'edge'
+// Removed edge runtime - fs/path require Node.js runtime
+// export const runtime = 'edge'
 
 export async function GET(req: Request) {
   try {
@@ -19,7 +20,7 @@ export async function GET(req: Request) {
     const ext = path.extname(filePath).toLowerCase()
     const contentType = ext === '.pdf' ? 'application/pdf' : ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : ext === '.png' ? 'image/png' : 'application/octet-stream'
 
-    return new NextResponse(data, { status: 200, headers: { 'Content-Type': contentType } })
+    return new NextResponse(new Uint8Array(data), { status: 200, headers: { 'Content-Type': contentType } })
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
