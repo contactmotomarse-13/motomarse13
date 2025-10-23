@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Moto Marse Icon Generator</title>
+</head>
+<body>
+  <canvas id="canvas" width="512" height="512"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Background gradient (bleu brand)
+    const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+    gradient.addColorStop(0, '#3b82f6');
+    gradient.addColorStop(1, '#1d4ed8');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 512, 512);
+    
+    // Motorcycle emoji or text
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 280px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🏍️', 256, 256);
+    
+    // Text "MM"
+    ctx.font = 'bold 120px sans-serif';
+    ctx.fillText('MM', 256, 420);
+    
+    // Download
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'icon-512.png';
+      a.click();
+    });
+  </script>
+</body>
+</html>

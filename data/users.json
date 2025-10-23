@@ -1,0 +1,25 @@
+[
+  {
+    "id": "user_1761148121114_xlykvi",
+    "email": "augustin.bertholon@gmail.com",
+    "password": "$2b$10$9UFHcYp6KDVVnU8WRTgp.uhdlKQBDWgk0Mm4uletwf0nvO9jBscc6",
+    "name": "augustin bertholon",
+    "createdAt": "2025-10-22T15:48:41.114Z"
+  },
+  {
+    "id": "user_1761151086822_lwb7f",
+    "email": "augustin.bertholon13@gmail.com",
+    "password": "$2b$10$AUiYKUHCq2MRef2I7m8vC.ePqfSCwI6ORDKeN9iPCUinMP44gX55G",
+    "name": "Bertholon",
+    "role": "driver",
+    "createdAt": "2025-10-22T16:38:06.822Z"
+  },
+  {
+    "id": "user_1761152808408_3b07ku",
+    "email": "shabaka.tsakeng@gmail.com",
+    "password": "$2b$10$ESc1Kr4.zJqYyYR9XzxRi.9g0C.GS81chPHSEyW/7Zx0vjYt522g2",
+    "name": "Bertholon",
+    "role": "driver",
+    "createdAt": "2025-10-22T17:06:48.408Z"
+  }
+]

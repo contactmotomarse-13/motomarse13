@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 
-export const runtime = 'edge'
+// Remove edge runtime - fs/path require Node.js runtime
+// export const runtime = 'edge'
 
 export async function PUT(req: Request) {
   try {

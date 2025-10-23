@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://motomarse.vercel.app/sitemap.xml
+
+# Disallow admin pages from search engines
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /profil
+Disallow: /chauffeur/
+
+# Allow public pages
+Allow: /
+Allow: /reserver
+Allow: /tarifs
+Allow: /contact
+Allow: /devenir
+Allow: /connexion
+Allow: /inscription

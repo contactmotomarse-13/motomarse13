@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Leaflet CSS for map component */
+@import 'leaflet/dist/leaflet.css';
+
 /* Custom globals (kept) */
 
 :root {
