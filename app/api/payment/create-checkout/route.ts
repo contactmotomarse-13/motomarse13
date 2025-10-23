@@ -4,12 +4,22 @@ import { getCurrentUser } from '@/lib/auth'
 import { getBookingById } from '@/lib/db'
 import { calculateCommission } from '@/lib/payment'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Initialize Stripe only if key exists (prevents build errors)
+const stripeKey = process.env.STRIPE_SECRET_KEY
+if (!stripeKey) {
+  console.warn('STRIPE_SECRET_KEY not configured')
+}
+const stripe = stripeKey ? new Stripe(stripeKey, {
   apiVersion: '2025-09-30.clover',
-})
+}) : null
 
 export async function POST(req: Request) {
   try {
+    // Check if Stripe is configured
+    if (!stripe) {
+      return NextResponse.json({ error: 'Paiement non configuré' }, { status: 500 })
+    }
+
     const { bookingId, amount } = await req.json()
 
     if (!bookingId || !amount) {

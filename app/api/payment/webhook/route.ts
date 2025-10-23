@@ -2,14 +2,25 @@ import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { getBookings, saveBookings } from '@/lib/db'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-09-30.clover',
-})
+// Initialize Stripe only if key exists (prevents build errors)
+const stripeKey = process.env.STRIPE_SECRET_KEY
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
+if (!stripeKey) {
+  console.warn('STRIPE_SECRET_KEY not configured')
+}
+
+const stripe = stripeKey ? new Stripe(stripeKey, {
+  apiVersion: '2025-09-30.clover',
+}) : null
 
 export async function POST(req: Request) {
   try {
+    // Check if Stripe is configured
+    if (!stripe || !webhookSecret) {
+      return NextResponse.json({ error: 'Webhook non configuré' }, { status: 500 })
+    }
+
     const body = await req.text()
     const signature = req.headers.get('stripe-signature')!
 
